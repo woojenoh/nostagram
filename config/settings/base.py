@@ -39,7 +39,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://localhost/nostagram'),
+    'default': env.db('DATABASE_URL', default='postgresql://postgres:4131@localhost:5432/nostagram'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'nostagram.users.apps.UsersAppConfig',
     # Your stuff: custom apps go here
+    'nostagram.images.apps.ImagesConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
