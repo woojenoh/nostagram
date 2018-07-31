@@ -19,6 +19,10 @@ urlpatterns = [
         "users/",
         include("nostagram.users.urls", namespace="users"),
     ),
+    path(
+        "images/",
+        include("nostagram.images.urls", namespace="images"),
+    ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
