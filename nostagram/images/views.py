@@ -1,11 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from . import models, serializers
 
 
 class Feed(APIView):
 
     def get(self, request, format=None):
+
         user = request.user
 
         following_users = user.following.all()
@@ -25,3 +27,33 @@ class Feed(APIView):
         serializer = serializers.ImageSerializer(sorted_list, many=True)
 
         return Response(serializer.data)
+
+
+class LikeImage(APIView):
+
+    def get(self, request, image_id, format=None):
+
+        user = request.user
+
+        # 이미지 찾아서 가져온다. 없으면 404
+        try:
+            found_image = models.Image.objects.get(id=image_id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # 찾은 이미지에 좋아요 누른다. 이미 좋아요 돼있으면 삭제
+        try:
+            preexisting_like = models.Like.objects.get(
+                creator=user,
+                image=found_image
+            )
+            preexisting_like.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except models.Like.DoesNotExist:
+            new_like = models.Like.objects.create(
+                creator=user,
+                image=found_image
+            )
+            new_like.save()
+            return Response(status=status.HTTP_201_CREATED)
