@@ -31,7 +31,7 @@ class Feed(APIView):
 
 class LikeImage(APIView):
 
-    def get(self, request, image_id, format=None):
+    def post(self, request, image_id, format=None):
 
         user = request.user
 
@@ -41,14 +41,13 @@ class LikeImage(APIView):
         except models.Image.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        # 찾은 이미지에 좋아요 누른다. 이미 좋아요 돼있으면 삭제
+        # 찾은 이미지에 좋아요 누른다.
         try:
             preexisting_like = models.Like.objects.get(
                 creator=user,
                 image=found_image
             )
-            preexisting_like.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
 
         except models.Like.DoesNotExist:
             new_like = models.Like.objects.create(
@@ -57,6 +56,25 @@ class LikeImage(APIView):
             )
             new_like.save()
             return Response(status=status.HTTP_201_CREATED)
+
+
+class UnLikeImage(APIView):
+
+    def delete(self, request, image_id, format=None):
+
+        user = request.user
+
+        # 찾으면 삭제
+        try:
+            preexisiting_like = models.Like.objects.get(
+                creator=user,
+                image__id=image_id
+            )
+            preexisiting_like.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except models.Like.DoesNotExist:
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
 
 
 class CommentOnImage(APIView):
