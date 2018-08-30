@@ -119,22 +119,40 @@ class Comment(APIView):
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
 class Search(APIView):
 
-     def get(self, request, format=None):
+    def get(self, request, format=None):
 
-         hashtags = request.query_params.get('hashtags', None)
+        hashtags = request.query_params.get('hashtags', None)
 
-         if hashtags is not None:
-             
-             hashtags = hashtags.split(",")
+        if hashtags is not None:
 
-             images = models.Image.objects.filter(tags__name__in=hashtags)
+            hashtags = hashtags.split(",")
 
-             serializer = serializers.CountImageSerializer(images, many=True)
+            images = models.Image.objects.filter(tags__name__in=hashtags)
 
-             return Response(data=serializer.data, status=status.HTTP_200_OK)
+            serializer = serializers.CountImageSerializer(images, many=True)
 
-         else:
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-             return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ModerateComments(APIView):
+
+    def delete(self, request, image_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment_to_delete = models.Comment.objects.get(
+                id=comment_id, image__id=image_id, image__creator=user)
+            comment_to_delete.delete()
+
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
