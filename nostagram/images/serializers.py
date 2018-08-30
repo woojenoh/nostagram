@@ -2,6 +2,7 @@ from rest_framework import serializers
 from . import models
 from nostagram.users import models as user_models
 
+
 class SmallImageSerializer(serializers.ModelSerializer):
 
     """ Used for the notifications """
@@ -11,6 +12,7 @@ class SmallImageSerializer(serializers.ModelSerializer):
         fields = (
             'file',
         )
+
 
 class CountImageSerializer(serializers.ModelSerializer):
 
@@ -22,6 +24,7 @@ class CountImageSerializer(serializers.ModelSerializer):
             'comment_count',
             'like_count'
         )
+
 
 class FeedUserSerializer(serializers.ModelSerializer):
 
@@ -67,5 +70,6 @@ class ImageSerializer(serializers.ModelSerializer):
             'caption',
             'comments',
             'like_count',
-            'creator'
+            'creator',
+            'created_at'
         )
