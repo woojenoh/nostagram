@@ -2,13 +2,20 @@ from rest_framework import serializers
 from . import models
 from nostagram.images import serializers as images_serializers
 
+
 class UserProfileSerializer(serializers.ModelSerializer):
 
     images = images_serializers.CountImageSerializer(many=True)
 
+    # 수정을 원하지 않는 필드들
+    post_count = serializers.ReadOnlyField()
+    followers_count = serializers.ReadOnlyField()
+    following_count = serializers.ReadOnlyField()
+
     class Meta:
         model = models.User
         fields = (
+            'profile_image',
             'username',
             'name',
             'bio',
@@ -18,6 +25,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'following_count',
             'images'
         )
+
 
 class ListUserSerializer(serializers.ModelSerializer):
 
