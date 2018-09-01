@@ -68,7 +68,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
-    'taggit'
+    'taggit',
+    'taggit_serializer',
 ]
 LOCAL_APPS = [
     'nostagram.users.apps.UsersAppConfig',
