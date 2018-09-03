@@ -3,8 +3,9 @@ import thunk from "redux-thunk";
 import { routerReducer, routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import users from "redux/modules/users";
-import Reactotron from "ReactotronConfig";
+// import Reactotron from "ReactotronConfig";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { i18nState } from "redux-i18n";
 
 // 현재 환경을 확인한다.
 const env = process.env.NODE_ENV;
@@ -22,17 +23,15 @@ if (env === "development") {
 // 리듀서를 합친다.
 const reducer = combineReducers({
   users,
-  routing: routerReducer
+  routing: routerReducer,
+  i18nState
 });
 
 let store;
 
 if (env === "development") {
   store = initialState =>
-    Reactotron.createStore(
-      reducer,
-      composeWithDevTools(applyMiddleware(...middlewares))
-    );
+    createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
 } else {
   store = initialState => createStore(reducer, applyMiddleware(...middlewares));
 }
