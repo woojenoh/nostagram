@@ -41,8 +41,8 @@ export const SignupForm = (props, context) => (
       {context.t("Sign up to see photos and videos from your friends.")}
     </h3>
     <button className={styles.button}>
-      <Ionicon icon="logo-facebook" fontSize="20px" color="white" /> Log in with
-      {context.t("Facebook")}
+      <Ionicon icon="logo-facebook" fontSize="20px" color="white" />
+      {context.t("Log in with Facebook")}
     </button>
     <span className={styles.divider}>or</span>
     <form className={styles.form}>
@@ -73,8 +73,7 @@ export const SignupForm = (props, context) => (
       />
     </form>
     <p className={styles.terms}>
-      {context.t("By signing up, you agree to our")}
-      <span>{context.t("Terms & Privacy Policy")}</span>.
+      {context.t("By signing up, you agree to our Terms & Privacy Policy")}
     </p>
   </div>
 );
