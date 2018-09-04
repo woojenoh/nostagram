@@ -37,7 +37,9 @@
         cursor: pointer;
       }
       p {
-        margin: 15px;
+        .text {
+          margin: 15px;
+        }
       }
     }
     .form-box {
