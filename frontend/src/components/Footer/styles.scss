@@ -1,14 +1,13 @@
 .footer {
   max-width: $max-page-width;
   width: 100%;
-  margin: 0 auto;
+  margin: 55px auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
   text-transform: uppercase;
   font-size: $small-font-size;
-  margin-bottom: 55px;
   flex-wrap: wrap;
   @include breakpoint(mobileonly) {
     justify-content: center;
