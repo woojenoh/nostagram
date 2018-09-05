@@ -15,7 +15,7 @@ class Container extends Component {
         passwordValue={password}
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
-        handleFacebookLogin={this._handleFacbookLogin}
+        handleFacebookLogin={this._handleFacebookLogin}
       />
     );
   }
@@ -34,7 +34,7 @@ class Container extends Component {
     // redux action
   };
 
-  _handleFacbookLogin = response => {
+  _handleFacebookLogin = response => {
     console.log(response);
     // redux action
   };
