@@ -16,28 +16,41 @@ const SignupForm = (props, context) => (
     <form className={formStyles.form}>
       <input
         type="email"
+        name="email"
         placeholder={context.t("Email")}
         className={formStyles.textInput}
+        value={props.emailValue}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
+        name="name"
         placeholder={context.t("Full Name")}
         className={formStyles.textInput}
+        value={props.nameValue}
+        onChange={props.handleInputChange}
       />
       <input
         type="username"
+        name="username"
         placeholder={context.t("Username")}
         className={formStyles.textInput}
+        value={props.usernameValue}
+        onChange={props.handleInputChange}
       />
       <input
         type="password"
+        name="password"
         placeholder={context.t("Password")}
         className={formStyles.textInput}
+        value={props.passwordValue}
+        onChange={props.handleInputChange}
       />
       <input
         type="submit"
         value={context.t("Sign up")}
         className={formStyles.button}
+        onSubmit={props.handleSubmit}
       />
     </form>
     <p className={formStyles.terms}>
@@ -48,6 +61,15 @@ const SignupForm = (props, context) => (
 
 SignupForm.contextTypes = {
   t: PropTypes.func.isRequired
+};
+
+SignupForm.propTypes = {
+  emailValue: PropTypes.string.isRequired,
+  nameValue: PropTypes.string.isRequired,
+  usernameValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default SignupForm;
