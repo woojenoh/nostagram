@@ -15,6 +15,7 @@ class Container extends Component {
         passwordValue={password}
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
+        handleFacebookLogin={this._handleFacbookLogin}
       />
     );
   }
@@ -30,6 +31,12 @@ class Container extends Component {
 
   _handleSubmit = event => {
     event.preventDefault();
+    // redux action
+  };
+
+  _handleFacbookLogin = response => {
+    console.log(response);
+    // redux action
   };
 }
 
