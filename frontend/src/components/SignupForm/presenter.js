@@ -13,7 +13,7 @@ const SignupForm = (props, context) => (
       {context.t("Log in with Facebook")}
     </button>
     <span className={formStyles.divider}>or</span>
-    <form className={formStyles.form}>
+    <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
         type="email"
         name="email"
@@ -50,7 +50,6 @@ const SignupForm = (props, context) => (
         type="submit"
         value={context.t("Sign up")}
         className={formStyles.button}
-        onSubmit={props.handleSubmit}
       />
     </form>
     <p className={formStyles.terms}>
