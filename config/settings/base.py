@@ -59,22 +59,21 @@ DJANGO_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.humanize', # Handy template tags
+    'django.contrib.humanize',  # Handy template tags
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',
-    'allauth',
-    'allauth.account',
+    'allauth',  # registration
+    'allauth.account',  # registration
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'rest_framework',
+    'allauth.socialaccount.providers.facebook',  # registration
+    'rest_framework',  # REST framework
     'rest_framework.authtoken',
-    'taggit',
-    'taggit_serializer',
-    'rest_auth',
-    'rest_auth.registration',
-    'corsheaders',
+    'taggit',  # Tags for the photos
+    'taggit_serializer',  # tag serializer
+    'rest_auth',  # rest auth
+    'rest_auth.registration',  # enable registration
+    'corsheaders',  # To accept requests from React
 ]
 LOCAL_APPS = [
     'nostagram.users.apps.UsersAppConfig',
@@ -135,12 +134,12 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 # STATIC
@@ -264,4 +263,39 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+            'user_friends'
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+            'picture'
+        ],
+        'AUTH_PARAMS': {
+            # 'auth_type': 'reauthenticate'
+        },
+        'METHOD': 'oauth2',
+        # 'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'
+    }
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'nostagram.users.serializers.SignUpSerializer'
 }
