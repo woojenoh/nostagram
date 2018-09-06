@@ -226,7 +226,7 @@ class ImageDetail(APIView):
         image = self.find_own_image(image_id, user)
 
         if image is None:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         # partial=True를 통해 일부만 변경 가능하게 한다.
         serializer = serializers.InputImageSerializer(
@@ -246,7 +246,7 @@ class ImageDetail(APIView):
         image = self.find_own_image(image_id, user)
 
         if image is None:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         image.delete()
 
