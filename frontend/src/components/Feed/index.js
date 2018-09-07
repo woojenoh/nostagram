@@ -2,6 +2,15 @@ import { connect } from "react-redux";
 import { actionCreators as photoActions } from "redux/modules/photos";
 import Container from "./container";
 
+const mapStateToProps = (state, ownProps) => {
+  const {
+    photos: { feed }
+  } = state;
+  return {
+    feed
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getFeed: () => {
@@ -11,6 +20,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Container);

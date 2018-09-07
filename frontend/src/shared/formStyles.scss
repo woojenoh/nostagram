@@ -66,7 +66,6 @@
     color: #385185;
     justify-content: center;
     margin-bottom: 15px;
-    cursor: pointer;
     background-color: white;
     border: 0;
     font-size: $normal-font-size;
@@ -77,6 +76,9 @@
     &:focus,
     &:active {
       outline: none;
+    }
+    button {
+      cursor: pointer;
     }
   }
   .forgot-link {

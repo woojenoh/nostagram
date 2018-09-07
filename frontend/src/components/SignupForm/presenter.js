@@ -26,6 +26,7 @@ const SignupForm = (props, context) => (
         className={formStyles.textInput}
         value={props.emailValue}
         onChange={props.handleInputChange}
+        required
       />
       <input
         type="text"
@@ -34,6 +35,7 @@ const SignupForm = (props, context) => (
         className={formStyles.textInput}
         value={props.nameValue}
         onChange={props.handleInputChange}
+        required
       />
       <input
         type="username"
@@ -42,6 +44,7 @@ const SignupForm = (props, context) => (
         className={formStyles.textInput}
         value={props.usernameValue}
         onChange={props.handleInputChange}
+        required
       />
       <input
         type="password"
@@ -50,6 +53,7 @@ const SignupForm = (props, context) => (
         className={formStyles.textInput}
         value={props.passwordValue}
         onChange={props.handleInputChange}
+        required
       />
       <input
         type="submit"

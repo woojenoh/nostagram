@@ -13,6 +13,7 @@ const LoginForm = (props, context) => (
         value={props.usernameValue}
         onChange={props.handleInputChange}
         name="username"
+        required
       />
       <input
         type="password"
@@ -21,6 +22,7 @@ const LoginForm = (props, context) => (
         value={props.passwordValue}
         onChange={props.handleInputChange}
         name="password"
+        required
       />
       <input
         type="submit"
