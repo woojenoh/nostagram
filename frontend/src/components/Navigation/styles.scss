@@ -1,22 +1,28 @@
 .navigation {
   width: 100%;
-  @include boxBorder(no);
+  border-bottom: 1px solid #e6e6e6;
   display: flex;
   justify-content: center;
+  margin-bottom: 0px;
+  box-sizing: border-box;
   .inner {
-    max-width: $max-page-width;
+    max-width: $max-page-width + 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 77px;
-    padding: 25px 0;
+    padding: 25px 40px;
     .column {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 33%;
-      position: relative;
+      &:nth-child(2) {
+        @include breakpoint("phone") {
+          display: none;
+        }
+      }
       &:first-child {
         justify-content: flex-start;
       }
@@ -25,9 +31,13 @@
       }
       .logo {
         max-width: 125px;
+        @include breakpoint("phone") {
+          max-width: 115px;
+        }
       }
       .search-input {
-        width: 215px;
+        max-width: 215px;
+        width: 100%;
         box-sizing: border-box;
         padding: 5px;
         border: solid 1px #dbdbdb;
@@ -35,6 +45,7 @@
         background-color: #fafafa;
         font-size: $normal-font-size;
         font-weight: 300;
+        margin-right: 15px;
         text-align: center;
         &::placeholder {
           color: $dark-grey;
