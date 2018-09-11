@@ -10,6 +10,7 @@
     resize: none;
     width: 100%;
     font-size: $normal-font-size;
+    font-family: inherit;
     &:focus {
       outline: none;
     }
