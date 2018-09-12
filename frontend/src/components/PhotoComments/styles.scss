@@ -4,7 +4,10 @@
   }
 }
 .comment {
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  &:first-child {
+    margin-bottom: 12px;
+  }
   .username {
     font-weight: 600;
   }
